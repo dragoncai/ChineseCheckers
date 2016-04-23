@@ -23,7 +23,9 @@ public class CheckerBoardTest {
 
     @Test
     public void name() throws Exception {
-        ICheckerPiece checkerPiece = checkerBoard.getCheckerPieceMap().get(Position.newInstance(0, 0, 0));
+        IPosition iPosition = Position.newInstance(0, 0, 0);
+        checkerBoard.addPieces(TeamColor.BLACK, iPosition);
+        ICheckerPiece checkerPiece = checkerBoard.getPiece(iPosition);
         IPosition position = checkerBoard.move(checkerPiece, CheckerDirection.NORTH_EAST);
         assertThat(position).isEqualTo(Position.newInstance(0, 1, 1));
         assertThat(checkerBoard.getCheckerPieceMap().get(position)).isNotNull();

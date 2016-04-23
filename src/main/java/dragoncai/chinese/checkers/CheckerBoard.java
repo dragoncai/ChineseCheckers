@@ -19,6 +19,10 @@ public class CheckerBoard {
     }
 
     public void init() {
+        fillInBorder();
+    }
+
+    private void fillInBorder() {
         IPosition position = Position.newInstance(-1, -2, -1);
         IPosition position2 = Position.newInstance(-2, -4, -2);
         List<CheckerDirection> initLimitsMoves = Lists.newArrayList(CheckerDirection.NORTH_EAST, CheckerDirection.EAST, CheckerDirection.NORTH_WEST, CheckerDirection.NORTH_EAST, CheckerDirection.WEST, CheckerDirection.NORTH_WEST);
