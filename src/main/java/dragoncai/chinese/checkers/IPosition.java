@@ -1,0 +1,12 @@
+package dragoncai.chinese.checkers;
+
+/**
+ * Created by SAC D'AUBER on 16/04/2016.
+ */
+public interface IPosition {
+    int getXLeft();
+
+    int getY();
+
+    int getXRight();
+}
