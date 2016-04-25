@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ChineseCheckers" />
+        <module name="dragoncai.chiness-checkers" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ChineseCheckers" target="1.7" />
+      <module name="dragoncai.chiness-checkers" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

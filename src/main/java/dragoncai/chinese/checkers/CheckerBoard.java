@@ -6,12 +6,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.UnaryOperator;
 
 /**
  * Created by SAC D'AUBER on 16/04/2016.
  */
 public class CheckerBoard {
 
+    public static final ArrayList<CheckerDirection> CHECKER_DIRECTIONS = Lists.newArrayList(CheckerDirection.NORTH_WEST,
+            CheckerDirection.NORTH_WEST,
+            CheckerDirection.NORTH_WEST,
+            CheckerDirection.EAST,
+            CheckerDirection.EAST,
+            CheckerDirection.EAST,
+            CheckerDirection.SOUTH_WEST,
+            CheckerDirection.SOUTH_WEST,
+            CheckerDirection.NORTH_WEST);
     private Map<IPosition, ICheckerPiece> checkerPieceMap;
 
     public CheckerBoard() {
@@ -19,7 +29,29 @@ public class CheckerBoard {
     }
 
     public void init() {
+        List<CheckerDirection> moves = (List<CheckerDirection>) CHECKER_DIRECTIONS.clone();
+        moves.replaceAll(new UnaryOperator<CheckerDirection>() {
+            @Override
+            public CheckerDirection apply(CheckerDirection checkerDirection) {
+                return checkerDirection.opposite();
+            }
+        });
         fillInBorder();
+        addTeamPieces(TeamColor.BLACK, Position.newInstance(0, 0, 0), CHECKER_DIRECTIONS);
+        addTeamPieces(TeamColor.GREEN, Position.newInstance(0, 9, 9), CHECKER_DIRECTIONS);
+        addTeamPieces(TeamColor.BLUE, Position.newInstance(9, 9, 0), CHECKER_DIRECTIONS);
+        addTeamPieces(TeamColor.RED, Position.newInstance(8, 7, -1), moves);
+        addTeamPieces(TeamColor.WHITE, Position.newInstance(-1, 7, 8), moves);
+        addTeamPieces(TeamColor.YELLOW, Position.newInstance(8, 16, 8), moves);
+
+    }
+
+    private void addTeamPieces(TeamColor color, IPosition initPosition, List<CheckerDirection> moves) {
+        addPieces(color, initPosition);
+        for (CheckerDirection move : moves) {
+            initPosition = PositionHelper.simpleJumpPosition(initPosition, move);
+            addPieces(color, initPosition);
+        }
     }
 
     private void fillInBorder() {

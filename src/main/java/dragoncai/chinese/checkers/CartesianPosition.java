@@ -16,12 +16,12 @@ public class CartesianPosition {
         this((position.getXRight() - position.getXLeft()) / java.lang.Math.sqrt(3), position.getY());
     }
 
-    public double getX() {
-        return x;
+    public int getX() {
+        return (int)(11*25+x*25);
     }
 
-    public double getY() {
-        return y;
+    public int getY() {
+        return (int)(100+y*25);
     }
 
     @Override
